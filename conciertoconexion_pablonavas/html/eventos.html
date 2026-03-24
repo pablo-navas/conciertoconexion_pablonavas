@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Admin | Gestionar Evento</title>
+    <link rel="stylesheet" href="../css/admin.css">
+    <link rel="stylesheet" href="../css/eventualmente.css">
+</head>
+<body class="fondo-negro">
+
+    <header class="header-editor">
+        <div class="header-top">
+            <a href="indexplus.html" class="btn-regresar"> Volver</a>
+            <div class="accion-guardar">
+                <span>guardar cambios</span>
+                <button id="btn-guardar-evento" class="btn-plus">+</button>
+            </div>
+        </div>
+        <div class="contenedor-titulo">
+            <input type="text" id="nombre-concierto" placeholder="“Nombre del concierto”" class="input-titulo">
+            <button class="btn-plus-pequeño">+</button>
+        </div>
+    </header>
+
+    <main class="cuerpo-editor">
+        <section class="fila-superior">
+            <div class="caja-foto">
+                <div class="placeholder-img" id="preview-img">
+                    <span>Subir Foto (URL)</span>
+                    <input type="text" id="url-imagen" placeholder="Pega la URL aquí">
+                </div>
+            </div>
+
+            <div class="caja-descripcion">
+                <textarea id="descripcion-evento" placeholder="descripcion"></textarea>
+                <button class="btn-plus-float">+</button>
+            </div>
+        </section>
+
+        <section class="seccion-horarios">
+            <h3 class="titulo-naranja-centrado">Horarios del conciertos</h3>
+            <div class="contenedor-horarios-grid">
+                <div class="grid-fechas" id="lista-horarios">
+                    <div class="item-horario">
+                        <input type="text" class="clase-fecha" placeholder="fecha">
+                        <input type="text" class="clase-lugar" placeholder="lugar">
+                    </div>
+                </div>
+                <div class="footer-horarios">
+                    <span>Horarios</span>
+                    <button id="add-horario" class="btn-plus">+</button>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script src="../js/evento.js"></script>
+</body>
+</html>
