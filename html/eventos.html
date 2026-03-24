@@ -12,8 +12,8 @@
     <header style="padding: 20px; border-bottom: 2px solid #ff8c00; display: flex; justify-content: space-between; align-items: center;">
         <h1 style="color: #ff8c00; margin: 0;">Quirófano de Eventos</h1>
         <nav>
-            <a href="categorias.html" style="color: white; margin-right: 15px; text-decoration: none;">🏷️ Administrar Categorías</a>
-            <a href="/html/invaneventos.html" style="color: white; text-decoration: none;">⬅ Volver al Inventario</a>
+            <a href="categorias.html" style="color: white; margin-right: 15px; text-decoration: none;">🏷️ Categorías</a>
+            <a href="invaneventos.html" style="color: white; text-decoration: none;">⬅ Volver al Inventario</a>
         </nav>
     </header>
 
@@ -23,34 +23,47 @@
         <form id="formulario-evento" style="display: flex; flex-direction: column; gap: 15px;">
             
             <div>
-                <label style="color: #ff8c00; font-weight: bold;">Nombre de la Banda o Evento:</label>
+                <label style="color: #ff8c00; font-weight: bold;">Nombre del Evento:</label>
                 <input type="text" id="evento-nombre" placeholder="Ej. Humbe Tour 2026" required 
                        style="width: 100%; padding: 10px; margin-top: 5px; background: #333; color: white; border: 1px solid #555; border-radius: 5px; box-sizing: border-box;">
             </div>
 
-            <div>
-                <label style="color: #ff8c00; font-weight: bold;">Categoría del Evento:</label>
-                <select id="evento-categoria" required 
-                        style="width: 100%; padding: 10px; margin-top: 5px; background: #333; color: white; border: 1px solid #555; border-radius: 5px; box-sizing: border-box;">
-                    <option value="">Selecciona una categoría...</option>
+            <div style="display: flex; gap: 10px;">
+                <div style="flex: 1;">
+                    <label style="color: #ff8c00; font-weight: bold;">Categoría:</label>
+                    <select id="evento-categoria" required 
+                            style="width: 100%; padding: 10px; margin-top: 5px; background: #333; color: white; border: 1px solid #555; border-radius: 5px; box-sizing: border-box;">
+                        <option value="">Selecciona...</option>
                     </select>
+                </div>
+                <div style="flex: 1;">
+                    <label style="color: #ff8c00; font-weight: bold;">Precio (Q):</label>
+                    <input type="number" id="evento-precio" placeholder="Ej. 350" required 
+                           style="width: 100%; padding: 10px; margin-top: 5px; background: #333; color: white; border: 1px solid #555; border-radius: 5px; box-sizing: border-box;">
+                </div>
             </div>
 
             <div>
-                <label style="color: #ff8c00; font-weight: bold;">URL del Póster (Imagen):</label>
-                <input type="url" id="evento-imagen" placeholder="https://ejemplo.com/imagen.jpg" required 
+                <label style="color: #ff8c00; font-weight: bold;">Hora del Evento:</label>
+                <input type="time" id="evento-hora" required 
+                       style="width: 100%; padding: 10px; margin-top: 5px; background: #333; color: white; border: 1px solid #555; border-radius: 5px; box-sizing: border-box;">
+            </div>
+
+            <div>
+                <label style="color: #ff8c00; font-weight: bold;">URL de la Imagen:</label>
+                <input type="url" id="evento-imagen" placeholder="https://..." required 
                        style="width: 100%; padding: 10px; margin-top: 5px; background: #333; color: white; border: 1px solid #555; border-radius: 5px; box-sizing: border-box;">
             </div>
 
             <div>
                 <label style="color: #ff8c00; font-weight: bold;">Descripción:</label>
-                <textarea id="evento-descripcion" rows="4" placeholder="Detalles del concierto..." 
+                <textarea id="evento-descripcion" rows="3" placeholder="Detalles..." 
                           style="width: 100%; padding: 10px; margin-top: 5px; background: #333; color: white; border: 1px solid #555; border-radius: 5px; box-sizing: border-box; resize: vertical;"></textarea>
             </div>
 
             <button type="submit" id="btn-guardar-evento" 
                     style="background: #ff8c00; color: black; font-size: 1.1rem; font-weight: bold; padding: 12px; border: none; border-radius: 5px; cursor: pointer; margin-top: 10px;">
-                💾 GUARDAR CONCIERTO
+                 GUARDAR CONCIERTO
             </button>
         </form>
     </main>

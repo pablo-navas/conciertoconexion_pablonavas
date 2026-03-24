@@ -46,12 +46,10 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // Navegar al editor con el ID (para la cirugía de edición)
     window.editarEvento = (index) => {
         window.location.href = `evento.html?editId=${index}`;
     };
 
-    // Eliminar del sistema
     window.eliminarDelInventario = (index) => {
         if (confirm("¿Seguro que quieres borrar este concierto, Knight?")) {
             let actual = JSON.parse(localStorage.getItem(STORAGE_KEY)) || [];

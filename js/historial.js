@@ -1,7 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
     const contenedor = document.getElementById('lista-mis-boletos');
-    
-    // Leemos los boletos que el usuario ha comprado
+ 
     const misBoletos = JSON.parse(localStorage.getItem('misBoletosComprados')) || [];
 
     if (misBoletos.length === 0) {

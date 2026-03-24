@@ -1,9 +1,9 @@
 document.addEventListener('DOMContentLoaded', () => {
-    // 1. Obtener el ID desde la URL (?id=0)
+   
     const params = new URLSearchParams(window.location.search);
     const idConcierto = params.get('id');
 
-    // 2. Traer los datos
+
     const conciertos = JSON.parse(localStorage.getItem('misConciertosData')) || [];
     const concierto = conciertos[idConcierto];
 
@@ -11,8 +11,7 @@ document.addEventListener('DOMContentLoaded', () => {
         document.body.innerHTML = "<h1>Error: Concierto no encontrado</h1>";
         return;
     }
-
-    // 3. Pintar los datos en el HTML
+    
     document.getElementById('det-nombre').textContent = concierto.nombre;
     document.getElementById('det-imagen').src = concierto.imagen;
     document.getElementById('det-descripcion').textContent = concierto.descripcion || "Sin descripción disponible.";

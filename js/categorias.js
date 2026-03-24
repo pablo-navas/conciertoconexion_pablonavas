@@ -2,8 +2,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const btnGuardar = document.getElementById('btn-guardar-cat');
     const inputNombre = document.getElementById('cat-nombre');
     const listaHtml = document.getElementById('lista-categorias');
-    
-    // Llave para guardar las categorías
+ 
     const STORAGE_CAT = 'misCategoriasData';
 
     function cargarCategorias() {

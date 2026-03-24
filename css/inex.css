@@ -175,19 +175,6 @@ body.fondo-amarillo {
     padding: 40px 0;
 }
 
-.grid-eventos {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr); 
-    gap: 40px;
-    width: 85%;
-    margin: 0 auto;
-}
-
-.tarjeta-inicio {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
 
 .foto-contenedor {
     width: 100%;
@@ -228,3 +215,34 @@ body.fondo-amarillo {
     background-color: white;
     color: black;
 }
+
+.grid-eventos {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); 
+    gap: 40px;
+    width: 85%;
+    margin: 0 auto;
+}
+
+.tarjeta-inicio {
+    display: flex;
+    flex-direction: column;
+    align-items: center;}
+
+.btn-cat {
+    background: #333;
+    color: #ff8c00;
+    border: 1px solid #ff8c00;
+    padding: 8px 16px;
+    margin: 5px;
+    cursor: pointer;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    transition: 0.3s;
+}
+
+.btn-cat:hover {
+    background: #ff8c00;
+    color: black;
+}
+
