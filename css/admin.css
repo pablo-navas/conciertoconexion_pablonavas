@@ -1,0 +1,93 @@
+body {
+    background-color: #000000 !important; 
+    color: #ff8c00; 
+    margin: 0;
+    padding: 0;
+    font-family: sans-serif;
+}
+
+input, textarea {
+    background-color: #1a1a1a; 
+    color: #ff8c00;
+    border: 1px solid #ff8c00;
+    padding: 10px;
+}
+
+.fondo-negro-login {
+    background-color: #000000; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    font-family: Arial, sans-serif;
+}
+
+.contenedor-login {
+    text-align: center;
+    width: 100%;
+    max-width: 400px;
+}
+
+.titulo-naranja {
+    color: #ff8c00; 
+    margin-bottom: 20px;
+    text-transform: uppercase;
+}
+
+.tarjeta-login {
+    background-color: #1a1a1a; 
+    padding: 30px;
+    border: 3px solid #ff8c00; 
+    border-radius: 15px;
+    box-shadow: 0px 0px 20px rgba(255, 140, 0, 0.2);
+}
+
+.campo {
+    margin-bottom: 20px;
+    text-align: left;
+}
+
+.campo label {
+    display: block;
+    color: #ff8c00;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+.campo input {
+    width: 100%;
+    padding: 12px;
+    background-color: #c4c4c4; 
+    border: 2px solid black;
+    border-radius: 5px;
+    box-sizing: border-box;
+    font-size: 1rem;
+}
+
+.botones-login {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.btn-guardar {
+    background-color: #28a745; 
+    color: white;
+    border: none;
+    padding: 12px;
+    border-radius: 5px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.btn-cancelar {
+    color: #ff8c00;
+    text-decoration: none;
+    font-size: 0.9rem;
+}
+
+.btn-guardar:hover {
+    background-color: #218838;
+}
