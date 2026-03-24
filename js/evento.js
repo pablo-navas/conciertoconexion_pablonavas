@@ -1,69 +1,70 @@
 document.addEventListener('DOMContentLoaded', () => {
-    console.log("¡Caballerito, el sistema de guardado está listo!");
+    const formulario = document.getElementById('formulario-evento');
+    const selectCategoria = document.getElementById('evento-categoria');
 
-    const btnGuardar = document.getElementById('btn-guardar-evento');
-    const btnAddHorario = document.getElementById('add-horario');
-    const listaHorarios = document.getElementById('lista-horarios');
+    // --- 1. CARGAR CATEGORÍAS (Para que el select no esté vacío) ---
+    const categoriasGuardadas = JSON.parse(localStorage.getItem('misCategoriasData')) || [];
+    console.log("Categorías encontradas:", categoriasGuardadas);
 
-    if (btnAddHorario) {
-        btnAddHorario.onclick = (e) => {
-            e.preventDefault();
-            const nuevo = document.createElement('div');
-            nuevo.className = 'item-horario';
-            nuevo.innerHTML = `
-                <input type="text" class="clase-fecha" placeholder="fecha">
-                <input type="text" class="clase-lugar" placeholder="lugar">
-            `;
-            listaHorarios.appendChild(nuevo);
-        };
-    }
+    categoriasGuardadas.forEach(cat => {
+        const opcion = document.createElement('option');
+        opcion.value = cat.nombre;
+        opcion.textContent = cat.nombre;
+        selectCategoria.appendChild(opcion);
+    });
 
-    if (btnGuardar) {
-        btnGuardar.onclick = () => {
-            const nombre = document.getElementById('nombre-concierto').value;
-            const imagen = document.getElementById('url-imagen').value;
-            const desc = document.getElementById('descripcion-evento').value;
+    // --- 2. LOGICA DE GUARDADO ---
+    if (formulario) {
+        formulario.addEventListener('submit', (e) => {
+            e.preventDefault(); // ¡Vital! Detiene el refresco de página
+            console.log("Intentando guardar...");
 
-            if (!nombre) {
-                alert("¡Knight, el concierto debe tener un nombre!");
+            // Capturamos los valores
+            const nombre = document.getElementById('evento-nombre').value.trim();
+            const categoria = selectCategoria.value;
+            const imagen = document.getElementById('evento-imagen').value.trim();
+            const descripcion = document.getElementById('evento-descripcion').value.trim();
+
+            // Validación simple
+            if (!nombre || !categoria || !imagen) {
+                alert("Por favor, llena los campos obligatorios (Nombre, Categoría e Imagen)");
                 return;
             }
 
-            const cuadros = document.querySelectorAll('.item-horario');
-            const horariosArray = [];
-
-            cuadros.forEach(cuadro => {
-                const inputFecha = cuadro.querySelector('.clase-fecha');
-                const inputLugar = cuadro.querySelector('.clase-lugar');
-                
-                if (inputFecha && inputLugar) {
-                    const f = inputFecha.value;
-                    const l = inputLugar.value;
-                    if (f || l) {
-                        horariosArray.push({ fecha: f, lugar: l });
-                    }
-                }
-            });
-
-            const nuevoEvento = {
-                id: Date.now(), 
+            // Creamos el objeto del concierto
+            const nuevoConcierto = {
                 nombre: nombre,
-                imagen: imagen || "https://via.placeholder.com/300",
-                descripcion: desc,
-                horarios: horariosArray
+                categoria: categoria,
+                imagen: imagen,
+                descripcion: descripcion,
+                horarios: [] 
             };
 
-            let db = JSON.parse(localStorage.getItem('misConciertosData')) || [];
-            db.push(nuevoEvento);
-            localStorage.setItem('misConciertosData', JSON.stringify(db));
+            try {
+                // Traemos lo que ya existe
+                let inventario = JSON.parse(localStorage.getItem('misConciertosData')) || [];
+                
+                // Agregamos el nuevo
+                inventario.push(nuevoConcierto);
+                
+                // Guardamos de vuelta
+                localStorage.setItem('misConciertosData', JSON.stringify(inventario));
+                
+                console.log("¡Guardado con éxito!", nuevoConcierto);
+                alert("✅ Concierto guardado correctamente");
+                
+                // Limpiamos el formulario
+                formulario.reset();
+                
+                // Opcional: Redirigir al inventario para ver que sí se guardó
+                // window.location.href = "inaneventos.html";
 
-            console.log("Evento guardado:", nuevoEvento);
-
-        alert("✅ ¡Cambios guardados! Redirigiendo al inventario...");
-
-        window.location.href = "invaneventos.html";
-        };
+            } catch (error) {
+                console.error("Error al guardar en LocalStorage:", error);
+                alert("Hubo un error al guardar. Revisa la consola.");
+            }
+        });
     } else {
-        console.error("No se encontró el botón con ID: btn-guardar-evento");
+        console.error("No se encontró el formulario con ID 'formulario-evento'");
     }
 });

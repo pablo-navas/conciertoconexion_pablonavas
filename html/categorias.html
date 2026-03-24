@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Gestión de Categorías</title>
+    <link rel="stylesheet" href="../css/base.css"> 
+    <link rel="stylesheet" href="../css/admin.css">
+</head>
+<body style="background: #111; color: white; font-family: sans-serif;">
+
+    <header style="padding: 20px; border-bottom: 2px solid #ff8c00;">
+        <h1 style="color: #ff8c00;">Administrar Categorías</h1>
+        <a href="seguritas.html" style="color: white;"> Volver al Panel Admin</a>
+
+      
+        <a href="/html/eventos.html" style="color: rgb(243, 106, 21);"> ir a creacion de concierto</a>
+     </header>
+    <main style="display: flex; gap: 30px; padding: 20px;">
+        <section style="flex: 1; background: #222; padding: 20px; border-radius: 10px;">
+            <h3>Nueva Categoría</h3>
+            <input type="text" id="cat-nombre" placeholder="Ej. Rock, Pop, Teatro..." style="width: 100%; padding: 10px; margin-bottom: 15px; background: #333; color: white; border: 1px solid #ff8c00;">
+            <button id="btn-guardar-cat" style="background: #ff8c00; color: black; font-weight: bold; padding: 10px 20px; border: none; cursor: pointer;">
+                Guardar Categoría
+            </button>
+        </section>
+
+        <section style="flex: 2; background: #222; padding: 20px; border-radius: 10px;">
+            <h3>Categorías Existentes</h3>
+            <ul id="lista-categorias" style="list-style: none; padding: 0;"></ul>
+        </section>
+    </main>
+
+    <script src="../js/categorias.js"></script>
+</body>
+</html>

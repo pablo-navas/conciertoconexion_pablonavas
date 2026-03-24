@@ -1,58 +1,58 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    
     <meta charset="UTF-8">
-    <title>Admin | Gestionar Evento</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Creador de Eventos</title>
+    <link rel="stylesheet" href="../css/base.css">
     <link rel="stylesheet" href="../css/admin.css">
-    <link rel="stylesheet" href="../css/eventualmente.css">
 </head>
-<body class="fondo-negro">
+<body style="background: #111; color: white; font-family: sans-serif;">
 
-    <header class="header-editor">
-        <div class="header-top">
-            <a href="indexplus.html" class="btn-regresar"> Volver</a>
-            <div class="accion-guardar">
-                <span>guardar cambios</span>
-                <button id="btn-guardar-evento" class="btn-plus">+</button>
-            </div>
-        </div>
-        <div class="contenedor-titulo">
-            <input type="text" id="nombre-concierto" placeholder="“Nombre del concierto”" class="input-titulo">
-            <button class="btn-plus-pequeño">+</button>
-        </div>
+    <header style="padding: 20px; border-bottom: 2px solid #ff8c00; display: flex; justify-content: space-between; align-items: center;">
+        <h1 style="color: #ff8c00; margin: 0;">Quirófano de Eventos</h1>
+        <nav>
+            <a href="categorias.html" style="color: white; margin-right: 15px; text-decoration: none;">🏷️ Administrar Categorías</a>
+            <a href="/html/invaneventos.html" style="color: white; text-decoration: none;">⬅ Volver al Inventario</a>
+        </nav>
     </header>
 
-    <main class="cuerpo-editor">
-        <section class="fila-superior">
-            <div class="caja-foto">
-                <div class="placeholder-img" id="preview-img">
-                    <span>Subir Foto (URL)</span>
-                    <input type="text" id="url-imagen" placeholder="Pega la URL aquí">
-                </div>
+    <main style="max-width: 600px; margin: 40px auto; background: #222; padding: 30px; border-radius: 10px; border: 1px solid #ff8c00;">
+        <h2 style="text-align: center; color: #ff8c00; margin-top: 0;">Crear / Editar Concierto</h2>
+
+        <form id="formulario-evento" style="display: flex; flex-direction: column; gap: 15px;">
+            
+            <div>
+                <label style="color: #ff8c00; font-weight: bold;">Nombre de la Banda o Evento:</label>
+                <input type="text" id="evento-nombre" placeholder="Ej. Humbe Tour 2026" required 
+                       style="width: 100%; padding: 10px; margin-top: 5px; background: #333; color: white; border: 1px solid #555; border-radius: 5px; box-sizing: border-box;">
             </div>
 
-            <div class="caja-descripcion">
-                <textarea id="descripcion-evento" placeholder="descripcion"></textarea>
-                <button class="btn-plus-float">+</button>
+            <div>
+                <label style="color: #ff8c00; font-weight: bold;">Categoría del Evento:</label>
+                <select id="evento-categoria" required 
+                        style="width: 100%; padding: 10px; margin-top: 5px; background: #333; color: white; border: 1px solid #555; border-radius: 5px; box-sizing: border-box;">
+                    <option value="">Selecciona una categoría...</option>
+                    </select>
             </div>
-        </section>
 
-        <section class="seccion-horarios">
-            <h3 class="titulo-naranja-centrado">Horarios del conciertos</h3>
-            <div class="contenedor-horarios-grid">
-                <div class="grid-fechas" id="lista-horarios">
-                    <div class="item-horario">
-                        <input type="text" class="clase-fecha" placeholder="fecha">
-                        <input type="text" class="clase-lugar" placeholder="lugar">
-                    </div>
-                </div>
-                <div class="footer-horarios">
-                    <span>Horarios</span>
-                    <button id="add-horario" class="btn-plus">+</button>
-                </div>
+            <div>
+                <label style="color: #ff8c00; font-weight: bold;">URL del Póster (Imagen):</label>
+                <input type="url" id="evento-imagen" placeholder="https://ejemplo.com/imagen.jpg" required 
+                       style="width: 100%; padding: 10px; margin-top: 5px; background: #333; color: white; border: 1px solid #555; border-radius: 5px; box-sizing: border-box;">
             </div>
-        </section>
+
+            <div>
+                <label style="color: #ff8c00; font-weight: bold;">Descripción:</label>
+                <textarea id="evento-descripcion" rows="4" placeholder="Detalles del concierto..." 
+                          style="width: 100%; padding: 10px; margin-top: 5px; background: #333; color: white; border: 1px solid #555; border-radius: 5px; box-sizing: border-box; resize: vertical;"></textarea>
+            </div>
+
+            <button type="submit" id="btn-guardar-evento" 
+                    style="background: #ff8c00; color: black; font-size: 1.1rem; font-weight: bold; padding: 12px; border: none; border-radius: 5px; cursor: pointer; margin-top: 10px;">
+                💾 GUARDAR CONCIERTO
+            </button>
+        </form>
     </main>
 
     <script src="../js/evento.js"></script>
