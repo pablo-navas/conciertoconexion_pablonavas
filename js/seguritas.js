@@ -18,7 +18,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 window.location.href = "indexplus.html";
 
             } else {
-                alert("Datos incorrectos. ¡Solo el administrador tiene paso por aquí!");
+                alert("Datos incorrectos. ¡Fi, Fay, FO, solo el administrador tiene paso por aquí! ");
             }
         });
     }

@@ -6,23 +6,39 @@
     <link rel="stylesheet" href="../css/admin.css">
     <link rel="stylesheet" href="../css/eventualmente.css">
 </head>
-<body class="fondo-negro" style="color: white; font-family: sans-serif;">
+<body class="fondo-negro" style="color: white; font-family: sans-serif; background: #000;">
 
-    <main style="max-width: 800px; margin: 40px auto; padding: 20px; border: 1px solid #ff8c00; border-radius: 10px;">
+    <main style="max-width: 800px; margin: 40px auto; padding: 20px; border: 1px solid #ff8c00; border-radius: 10px; background: #111;">
         <div style="display: flex; gap: 30px; flex-wrap: wrap;">
-            <img id="det-imagen" src="" style="width: 300px; border: 3px solid #ff8c00; border-radius: 8px;">
+            <img id="det-imagen" src="" style="width: 300px; border: 3px solid #ff8c00; border-radius: 8px; object-fit: cover;">
             
             <div style="flex: 1;">
                 <h1 id="det-nombre" style="color: #ff8c00; margin-top: 0;">Cargando...</h1>
+                <p id="det-categoria" style="color: #888; text-transform: uppercase; font-size: 0.9rem; margin-bottom: 15px;"></p>
+                
+                <div style="background: #222; padding: 15px; border-radius: 5px; border-left: 4px solid #ff8c00; margin-bottom: 20px;">
+                    <p style="margin: 5px 0;"><strong> Hora:</strong> <span id="det-hora">--:--</span></p>
+                    <p style="margin: 5px 0; font-size: 1.2rem;"><strong> Precio:</strong> <span id="det-precio" style="color: #00ff00; font-weight: bold;">Q0</span></p>
+                </div>
+
                 <p id="det-descripcion" style="line-height: 1.6; color: #ccc;"></p>
+
+                <button id="btn-comprar-det" style="background: #ff8c00; color: black; border: none; padding: 12px; width: 100%; font-weight: bold; cursor: pointer; border-radius: 5px; margin-top: 10px;">
+                     COMPRAR ENTRADA
+                </button>
             </div>
         </div>
 
         <section style="margin-top: 40px;">
-            <h3 style="border-bottom: 2px solid #ff8c00; padding-bottom: 10px;">Fechas y Lugares</h3>
-            <div id="det-horarios" style="display: grid; gap: 10px; margin-top: 20px;">
-                </div>
+            <h3 style="border-bottom: 2px solid #ff8c00; padding-bottom: 10px;">Información Adicional</h3>
+            <div id="det-horarios" style="display: grid; gap: 10px; margin-top: 20px; color: #888;">
+                <p>Ubicación: Guatemala City (Sede Central)</p>
+            </div>
         </section>
+        
+        <div style="text-align: center; margin-top: 20px;">
+            <a href="../index.html" style="color: #ff8c00; text-decoration: none; font-size: 0.9rem;">← Volver a la cartelera</a>
+        </div>
     </main>
 
     <script src="../js/detalle.js"></script>

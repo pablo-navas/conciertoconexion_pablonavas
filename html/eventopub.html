@@ -1,47 +1,23 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <title>Reserva tu lugar | Evento</title>
-    <link rel="stylesheet" href="../css/admin.css">
-    <link rel="stylesheet" href="../css/eventualmente.css">
-</head>
-<body class="fondo-negro">
-
-    <header class="header-editor">
-        <div class="header-top">
-            <a href="../index.html" class="btn-regresar">Volver</a>
-            <div class="accion-guardar">
-                <span id="texto-accion">Comprar boletos</span>
-                <button id="btn-comprar-final" class="btn-plus">aqui</button>
-            </div>
+<main style="background: #222; color: white; padding: 20px; border-radius: 10px; border: 1px solid #ff8c00; max-width: 800px; margin: 20px auto;">
+    <div id="detalle-evento" style="display: flex; flex-wrap: wrap; gap: 20px;">
+        <div style="flex: 1; min-width: 300px;">
+            <img id="pub-imagen" src="" alt="Poster" style="width: 100%; border-radius: 5px; border: 1px solid #444;">
         </div>
-        <div class="contenedor-titulo">
-            <h1 id="pub-nombre-concierto" class="titulo-naranja" style="font-size: 2.5rem;"></h1>
+        
+        <div style="flex: 1; min-width: 300px;">
+            <h1 id="pub-nombre" style="color: #ff8c00; margin-top: 0;">Nombre del Artista</h1>
+            <p id="pub-categoria" style="background: #444; display: inline-block; padding: 5px 10px; border-radius: 5px; font-size: 0.8rem;"></p>
+            
+            <div style="margin: 20px 0; border-left: 3px solid #ff8c00; padding-left: 15px;">
+                <p><strong> Hora:</strong> <span id="pub-hora">--:--</span></p>
+                <p><strong> Precio:</strong> <span id="pub-precio" style="color: #ff8c00; font-size: 1.2rem; font-weight: bold;">Q0.00</span></p>
+            </div>
+
+            <p id="pub-descripcion" style="line-height: 1.6; color: #ccc;"></p>
+            
+            <button id="btn-comprar-detalle" style="background: #ff8c00; color: black; border: none; padding: 15px 30px; font-size: 1rem; font-weight: bold; cursor: pointer; border-radius: 5px; width: 100%;">
+                ADQUIRIR ENTRADAS
+            </button>
         </div>
-    </header>
-
-    <main class="cuerpo-editor">
-        <section class="fila-superior">
-            <div class="caja-foto">
-                <div class="placeholder-img" id="pub-preview-img">
-                    <img id="img-destino" src="" style="width:100%; height:100%; object-fit:cover; display:none;">
-                </div>
-            </div>
-
-            <div class="caja-descripcion">
-                <p id="pub-descripcion-evento" style="color: white; padding: 10px; font-size: 1.1rem;"></p>
-            </div>
-        </section>
-
-        <section class="seccion-horarios">
-            <h3 class="titulo-naranja-centrado">Fechas y Ubicaciones</h3>
-            <div class="contenedor-horarios-grid">
-                <div class="grid-fechas" id="pub-lista-horarios"></div>
-            </div>
-        </section>
-    </main>
-
-    <script src="../js/evento-pub.js"></script>
-</body>
-</html>
+    </div>
+</main>

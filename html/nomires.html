@@ -3,19 +3,39 @@
 <head>
     <meta charset="UTF-8">
     <title>Historial</title>
-    <link rel="stylesheet" href="/css/admin.css">
-    <link rel="stylesheet" href="/css/histrial.css">
+    <link rel="stylesheet" href="../css/base.css">
+    <style>
+        .admin-container { max-width: 900px; margin: 40px auto; padding: 20px; background: #111; border-radius: 12px; border: 1px solid #ff8c00; color: white; }
+        table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+        th { background: #ff8c00; color: black; padding: 12px; text-align: left; }
+        td { padding: 12px; border-bottom: 1px solid #333; font-size: 0.9rem; }
+        tr:hover { background: #1a1a1a; }
+        .badge { background: #333; padding: 4px 8px; border-radius: 4px; font-size: 0.75rem; color: #ff8c00; }
+    </style>
 </head>
 <body class="fondo-negro">
 
-    <header class="header-historial">
-        <h1 class="titulo-naranja">mis boletos comprados</h1>
-        <a href="/index.html" class="link-naranja">← volver a eventos</a>
-    </header>
+    <div class="admin-container">
+        <h2 style="color: #ff8c00; display: flex; justify-content: space-between; align-items: center;">
+             Registro de Ventas Realizadas
+            <a href="../index.html" style="font-size: 0.8rem; color: rgb(107, 106, 105); text-decoration: none;">Volver al Inicio</a>
+        </h2>
 
-    <main class="contenedor-boletos" id="lista-mis-boletos">
-        </main>
+        <table>
+            <thead>
+                <tr>
+                    <th>Fecha</th>
+                    <th>Referencia</th>
+                    <th>Cliente</th>
+                    <th>Productos</th>
+                    <th>Total</th>
+                </tr>
+            </thead>
+            <tbody id="tabla-ventas">
+                </tbody>
+        </table>
+    </div>
 
-    <script src="js/historial.js"></script>
+    <script src="../js/historial.js"></script>
 </body>
 </html>

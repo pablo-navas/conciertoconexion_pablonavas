@@ -2,7 +2,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const btnGuardar = document.getElementById('btn-guardar-cat');
     const inputNombre = document.getElementById('cat-nombre');
     const listaHtml = document.getElementById('lista-categorias');
- 
+
     const STORAGE_CAT = 'misCategoriasData';
 
     function cargarCategorias() {
@@ -16,11 +16,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         categorias.forEach((cat, index) => {
             const li = document.createElement('li');
-            li.style.padding = "10px";
-            li.style.borderBottom = "1px solid #ff8c00";
-            li.style.display = "flex";
-            li.style.justifyContent = "space-between";
-            
+            li.style.cssText = "padding:10px; border-bottom:1px solid #ff8c00; display:flex; justify-content:space-between;";
             li.innerHTML = `
                 <span>${cat.nombre}</span>
                 <button onclick="borrarCategoria(${index})" style="background: red; color: white; border: none; padding: 5px 10px; cursor: pointer;">Borrar</button>

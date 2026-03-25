@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Creador de Eventos</title>
+    <title>Crea tus Eventos</title>
     <link rel="stylesheet" href="../css/base.css">
     <link rel="stylesheet" href="../css/admin.css">
 </head>
@@ -12,7 +12,7 @@
     <header style="padding: 20px; border-bottom: 2px solid #ff8c00; display: flex; justify-content: space-between; align-items: center;">
         <h1 style="color: #ff8c00; margin: 0;">Quirófano de Eventos</h1>
         <nav>
-            <a href="categorias.html" style="color: white; margin-right: 15px; text-decoration: none;">🏷️ Categorías</a>
+            <a href="categorias.html" style="color: white; margin-right: 15px; text-decoration: none;"> Categorías</a>
             <a href="invaneventos.html" style="color: white; text-decoration: none;">⬅ Volver al Inventario</a>
         </nav>
     </header>
@@ -47,6 +47,16 @@
                 <label style="color: #ff8c00; font-weight: bold;">Hora del Evento:</label>
                 <input type="time" id="evento-hora" required 
                        style="width: 100%; padding: 10px; margin-top: 5px; background: #333; color: white; border: 1px solid #555; border-radius: 5px; box-sizing: border-box;">
+            </div>
+
+            <div class="form-group" style="margin-bottom: 15px;">
+                <label for="evento-ciudad" style="display: block; color: #ff8c00; margin-bottom: 5px;">Ubicación (Guatemala):</label>
+                 <select id="evento-ciudad" style="width: 100%; padding: 10px; background: #333; color: white; border: 1px solid #ff8c00; border-radius: 5px;">
+                    <option value="Xela">Xela</option>
+                    <option value="Zona 1-8">Zona 1 - 8</option>
+                    <option value="Zona 9-16">Zona 9 - 16</option>
+                    <option value="Zona 17-22">Zona 17 - 22</option>
+                </select>
             </div>
 
             <div>

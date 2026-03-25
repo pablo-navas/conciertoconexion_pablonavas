@@ -1,29 +1,38 @@
 document.addEventListener('DOMContentLoaded', () => {
-    const contenedor = document.getElementById('lista-mis-boletos');
- 
-    const misBoletos = JSON.parse(localStorage.getItem('misBoletosComprados')) || [];
+    cargarHistorial();
+});
 
-    if (misBoletos.length === 0) {
-        contenedor.innerHTML = `<p style="text-align:center; color:#7a7a7a; margin-top:50px;">
-            Aún no has comprado ningún boleto. ¡Ve por el tuyo!
-        </p>`;
+function cargarHistorial() {
+    const VENTAS_KEY = 'registroVentas';
+    const tabla = document.getElementById('tabla-ventas');
+    
+    const ventas = JSON.parse(localStorage.getItem(VENTAS_KEY)) || [];
+    const ventasOrdenadas = ventas.reverse(); 
+
+    tabla.innerHTML = '';
+
+    if (ventasOrdenadas.length === 0) {
+        tabla.innerHTML = '<tr><td colspan="5" style="text-align:center; padding:50px; color:gray;">No hay ventas registradas aún, Knight.</td></tr>';
         return;
     }
 
-    misBoletos.forEach(boleto => {
-        const div = document.createElement('div');
-        div.className = 'boleto-item';
+    ventasOrdenadas.forEach(venta => {
+        const fila = document.createElement('tr');
         
-        div.innerHTML = `
-            <div class="foto-boleto">
-                <img src="${boleto.imagen}" alt="evento">
-            </div>
-            <div class="info-boleto">
-                <h2>${boleto.nombre}</h2>
-                <p><strong>Fecha:</strong> ${boleto.fecha} | <strong>Ciudad:</strong> ${boleto.ciudad}</p>
-                <p><strong>Código de Entrada:</strong> #${Math.floor(Math.random() * 1000000)}</p>
-            </div>
+        const nombresProductos = venta.productos.map(p => p.nombre).join(', ');
+
+        fila.innerHTML = `
+            <td>${venta.fecha}</td>
+            <td><span class="badge">${venta.idReferencia}</span></td>
+            <td>
+                <strong>${venta.cliente.nombre}</strong><br>
+                <small style="color:gray;">ID: ${venta.cliente.id}</small>
+            </td>
+            <td style="max-width: 200px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">
+                ${nombresProductos}
+            </td>
+            <td style="color: #00ff00; font-weight: bold;">Q${venta.total}</td>
         `;
-        contenedor.appendChild(div);
+        tabla.appendChild(fila);
     });
-});
+}

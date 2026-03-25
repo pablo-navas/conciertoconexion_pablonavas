@@ -1,46 +1,62 @@
 document.addEventListener('DOMContentLoaded', () => {
-    const idSeleccionado = localStorage.getItem('conciertoSeleccionado');
-    const todosLosConciertos = JSON.parse(localStorage.getItem('misConciertosData')) || [];
 
-    const evento = todosLosConciertos.find(c => c.id == idSeleccionado);
-
-    if (!evento) {
-        console.error("No se encontró el concierto con ID:", idSeleccionado);
-        window.location.href = "../index.html";
-        return;
-    }
-
-    document.getElementById('pub-nombre-concierto').innerText = evento.nombre;
-    document.getElementById('pub-descripcion-evento').innerText = evento.descripcion || "Sin descripción disponible.";
+    const params = new URLSearchParams(window.location.search);
+    const idEvento = params.get('id');
     
-    const imgDestino = document.getElementById('img-destino');
-    if (evento.imagen) {
-        imgDestino.src = evento.imagen;
-        imgDestino.style.display = "block";
-    }
+    const STORAGE_KEY = 'misConciertosData';
+    const conciertos = JSON.parse(localStorage.getItem(STORAGE_KEY)) || [];
 
-    const contenedorHorarios = document.getElementById('pub-lista-horarios');
-    contenedorHorarios.innerHTML = ''; 
-    if (evento.horarios && evento.horarios.length > 0) {
-        evento.horarios.forEach(h => {
-            const item = document.createElement('div');
-            item.className = 'item-horario'; 
-            
-            item.innerHTML = `
-                <p style="color: black; font-weight: bold; margin-bottom: 5px;">${h.fecha}</p>
-                <p style="color: #4b0082; font-size: 0.9rem; margin: 0;">${h.lugar}</p>
-            `;
-            contenedorHorarios.appendChild(item);
-        });
+    if (idEvento !== null && conciertos[idEvento]) {
+        const evento = conciertos[idEvento];
+
+        if(document.getElementById('pub-nombre')) {
+            document.getElementById('pub-nombre').textContent = evento.nombre;
+        }
+        
+        if(document.getElementById('pub-categoria')) {
+            document.getElementById('pub-categoria').textContent = evento.categoria || 'General';
+        }
+
+        if(document.getElementById('pub-precio')) {
+            document.getElementById('pub-precio').textContent = `Q${evento.precio || 0}`;
+        }
+
+        if(document.getElementById('pub-hora')) {
+            document.getElementById('pub-hora').textContent = evento.hora || 'Por confirmar';
+        }
+
+        if(document.getElementById('pub-imagen')) {
+            document.getElementById('pub-imagen').src = evento.imagen || 'https://via.placeholder.com/400';
+        }
+
+        if(document.getElementById('pub-descripcion')) {
+            document.getElementById('pub-descripcion').textContent = evento.descripcion || 'Sin descripción.';
+        }
+
+        const btnComprar = document.getElementById('btn-comprar-detalle');
+        if (btnComprar) {
+            btnComprar.onclick = () => {
+                registrarVenta(evento);
+            };
+        }
+
     } else {
-        contenedorHorarios.innerHTML = '<p style="color:white;">Próximamente más fechas...</p>';
+        console.error("No se encontró el evento con ID:", idEvento);
+
     }
 
-    const btnComprar = document.getElementById('btn-comprar-final');
-    if (btnComprar) {
-        btnComprar.onclick = () => {
-            alert(`¡Excelente elección, Knight! Has iniciado la compra para: ${evento.nombre}`);
-
+    function registrarVenta(concierto) {
+        const historial = JSON.parse(localStorage.getItem('registroVentas')) || [];
+        const nuevaVenta = {
+            nombreEvento: concierto.nombre,
+            precio: concierto.precio || 0,
+            fecha: new Date().toLocaleString(),
+            idVenta: "REF-" + Math.floor(Math.random() * 1000000)
         };
+
+        historial.push(nuevaVenta);
+        localStorage.setItem('registroVentas', JSON.stringify(historial));
+
+        alert(` ¡Entrada adquirida!\nEvento: ${concierto.nombre}\nPrecio: Q${nuevaVenta.precio}`);
     }
-});
+});s
