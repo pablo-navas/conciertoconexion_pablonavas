@@ -2,7 +2,7 @@ const CARRITO_KEY = 'carritoTemporal';
 const VENTAS_KEY = 'registroVentas';
 
 document.addEventListener('DOMContentLoaded', () => {
-   actualizarTotalInterfaz();
+    actualizarTotalInterfaz();
 
     const contenedorItems = document.getElementById('contenedor-items');
     if (contenedorItems) {
@@ -15,13 +15,14 @@ function actualizarTotalInterfaz() {
     const spanTotal = document.getElementById('suma-total');
     if (spanTotal) {
         const total = lista.reduce((acc, item) => acc + parseFloat(item.precio || 0), 0);
-        spanTotal.innerText = total;
+        spanTotal.innerText = total.toFixed(2); 
     }
 }
 
 function renderizarListaCarrito() {
     const lista = JSON.parse(localStorage.getItem(CARRITO_KEY)) || [];
     const contenedor = document.getElementById('contenedor-items');
+    if (!contenedor) return;
     contenedor.innerHTML = '';
 
     if (lista.length === 0) {
@@ -35,7 +36,7 @@ function renderizarListaCarrito() {
         div.innerHTML = `
             <div>
                 <strong style="color:#ff8c00;">${item.nombre}</strong><br>
-                <small>Q${item.precio}</small>
+                <small>Q${parseFloat(item.precio || 0).toFixed(2)}</small>
             </div>
             <button onclick="quitarDelCarrito(${index})" style="background:#ff4444; color:white; border:none; padding:5px 10px; cursor:pointer; border-radius:4px;">Eliminar</button>
         `;
@@ -52,7 +53,6 @@ window.quitarDelCarrito = (index) => {
 };
 
 window.finalizarCompra = () => {
-
     const checkEdad = document.getElementById('check-edad');
     const cliId = document.getElementById('cli-id');
 
@@ -80,12 +80,17 @@ window.finalizarCompra = () => {
     }
 
     const carrito = JSON.parse(localStorage.getItem(CARRITO_KEY)) || [];
+    if (carrito.length === 0) {
+        alert("El carrito está vacío.");
+        return;
+    }
+
     const historialVentas = JSON.parse(localStorage.getItem(VENTAS_KEY)) || [];
     
     const nuevaVenta = {
         cliente: datosCliente,
         productos: carrito,
-        total: carrito.reduce((acc, item) => acc + parseFloat(item.precio), 0),
+        total: carrito.reduce((acc, item) => acc + parseFloat(item.precio || 0), 0),
         fecha: new Date().toLocaleString(),
         idReferencia: "REF-" + Math.floor(Math.random() * 900000 + 100000)
     };

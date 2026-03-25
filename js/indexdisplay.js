@@ -7,27 +7,25 @@ document.addEventListener('DOMContentLoaded', () => {
     const filtroCategoria = document.getElementById('filtro-categoria');
     
     const STORAGE_KEY = 'misConciertosData';
-    const STORAGE_CAT = 'misCategoriasData'; // Llave exacta de tu categorias.js
+    const STORAGE_CAT = 'misCategoriasData'; 
     
     const conciertosOriginales = JSON.parse(localStorage.getItem(STORAGE_KEY)) || [];
 
-    // --- 1. FUNCIÓN PARA LLENAR EL SELECT DE CATEGORÍAS ---
+
     function cargarCategoriasDinamicas() {
         const categoriasGuardadas = JSON.parse(localStorage.getItem(STORAGE_CAT)) || [];
-        
-        // Limpiamos y dejamos la opción inicial
-        filtroCategoria.innerHTML = '<option value="">Todas las categorías</option>';
+           filtroCategoria.innerHTML = '<option value="">Todas las categorías</option>';
 
         categoriasGuardadas.forEach(cat => {
             const option = document.createElement('option');
-            // Usamos cat.nombre porque en tu categorias.js guardas objetos {nombre: ...}
+
             option.value = cat.nombre;
             option.textContent = cat.nombre;
             filtroCategoria.appendChild(option);
         });
     }
 
-    // --- 2. FUNCIÓN DE RENDERIZADO ---
+    
     function renderizar(lista) {
         contenedor.innerHTML = '';
 
@@ -56,7 +54,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         ${evento.categoria || 'General'}
                     </p>
                     <p style="color: #666; font-size: 0.7rem; margin-bottom: 12px;">
-                        📍 ${evento.ciudad || 'Ubicación no definida'}
+                         ${evento.ciudad || 'Ubicación no definida'}
                     </p>
                     
                     <button class="btn-comprar" 
@@ -75,7 +73,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // --- 3. LÓGICA DE FILTROS MAESTRA ---
+    // ya no doy mas qwq
     const ejecutarFiltros = () => {
         const termino = inputBusqueda.value.toLowerCase().trim();
         const ciudadSel = filtroCiudad.value;
@@ -93,7 +91,7 @@ document.addEventListener('DOMContentLoaded', () => {
         renderizar(filtrados);
     };
 
-    // Eventos
+
     inputBusqueda.addEventListener('input', ejecutarFiltros);
     filtroCiudad.addEventListener('change', ejecutarFiltros);
     filtroCategoria.addEventListener('change', ejecutarFiltros);
@@ -105,7 +103,6 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // --- EJECUCIÓN INICIAL ---
-    cargarCategoriasDinamicas(); // <-- Esto es lo que te faltaba
+    cargarCategoriasDinamicas(); 
     renderizar(conciertosOriginales);
 });
