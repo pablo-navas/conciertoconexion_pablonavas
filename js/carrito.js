@@ -52,6 +52,8 @@ window.quitarDelCarrito = (index) => {
     actualizarTotalInterfaz();
 };
 
+// ... (Tus funciones de actualizarTotalInterfaz y renderizarListaCarrito se mantienen igual) ...
+
 window.finalizarCompra = () => {
     const checkEdad = document.getElementById('check-edad');
     const cliId = document.getElementById('cli-id');
@@ -85,6 +87,20 @@ window.finalizarCompra = () => {
         return;
     }
 
+    // --- LÓGICA DE ACTUALIZACIÓN DE STOCK ---
+    const STORAGE_KEY_CONCIERTOS = 'misConciertosData';
+    const conciertosGlobales = JSON.parse(localStorage.getItem(STORAGE_KEY_CONCIERTOS)) || [];
+
+    carrito.forEach(itemCarrito => {
+        // Buscamos el concierto por nombre para actualizar su contador de ventas
+        const idx = conciertosGlobales.findIndex(c => c.nombre === itemCarrito.nombre);
+        if (idx !== -1) {
+            conciertosGlobales[idx].vendidos = (conciertosGlobales[idx].vendidos || 0) + 1;
+        }
+    });
+    // Guardamos la base de datos de conciertos actualizada
+    localStorage.setItem(STORAGE_KEY_CONCIERTOS, JSON.stringify(conciertosGlobales));
+
     const historialVentas = JSON.parse(localStorage.getItem(VENTAS_KEY)) || [];
     
     const nuevaVenta = {
@@ -97,8 +113,10 @@ window.finalizarCompra = () => {
 
     historialVentas.push(nuevaVenta);
     localStorage.setItem(VENTAS_KEY, JSON.stringify(historialVentas));
-    localStorage.removeItem(CARRITO_KEY);
+    
+    localStorage.removeItem(CARRITO_KEY); 
 
     alert(`¡Compra realizada con éxito!\nGracias por tu compra :D, ${datosCliente.nombre}.`);
-    window.location.href = "nomires.html"; 
+    
+    window.location.href = "../html/Qr.html"; 
 };

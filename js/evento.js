@@ -9,8 +9,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const STORAGE_KEY = 'misConciertosData';
     let conciertos = JSON.parse(localStorage.getItem(STORAGE_KEY)) || [];
-
-    const cats = JSON.parse(localStorage.getItem('misCategoriasData')) || [];
+   const cats = JSON.parse(localStorage.getItem('misCategoriasData')) || [];
     selectCategoria.innerHTML = '<option value="">Selecciona...</option>';
     cats.forEach(c => {
         const o = document.createElement('option');
@@ -18,6 +17,7 @@ document.addEventListener('DOMContentLoaded', () => {
         o.textContent = c.nombre;
         selectCategoria.appendChild(o);
     });
+
 
     if (editId !== null && conciertos[editId]) {
         console.log("Cargando datos para editar...", conciertos[editId]);
@@ -28,6 +28,10 @@ document.addEventListener('DOMContentLoaded', () => {
         document.getElementById('evento-hora').value = datos.hora || "";
         document.getElementById('evento-imagen').value = datos.imagen || "";
         document.getElementById('evento-descripcion').value = datos.descripcion || "";
+        
+        if(document.getElementById('evento-aforo')) {
+            document.getElementById('evento-aforo').value = datos.aforo || 0;
+        }
 
         if(selectCiudad) {
             selectCiudad.value = datos.ciudad || "";
@@ -46,6 +50,7 @@ document.addEventListener('DOMContentLoaded', () => {
     formulario.addEventListener('submit', (e) => {
         e.preventDefault();
 
+        // Crear el objeto con la lógica de AFORO y VENDIDOS
         const nuevoObjeto = {
             nombre: document.getElementById('evento-nombre').value,
             categoria: selectCategoria.value,
@@ -54,7 +59,10 @@ document.addEventListener('DOMContentLoaded', () => {
             hora: document.getElementById('evento-hora').value,
             imagen: document.getElementById('evento-imagen').value,
             descripcion: document.getElementById('evento-descripcion').value,
-            horarios: [] 
+            horarios: [],
+            // Guardar capacidad y mantener los vendidos si es edición
+            aforo: parseInt(document.getElementById('evento-aforo').value) || 0,
+            vendidos: (editId !== null) ? (conciertos[editId].vendidos || 0) : 0 
         };
 
         if (editId !== null) {
