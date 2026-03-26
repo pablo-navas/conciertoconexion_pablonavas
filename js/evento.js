@@ -9,8 +9,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const STORAGE_KEY = 'misConciertosData';
     let conciertos = JSON.parse(localStorage.getItem(STORAGE_KEY)) || [];
-   const cats = JSON.parse(localStorage.getItem('misCategoriasData')) || [];
-    selectCategoria.innerHTML = '<option value="">Selecciona...</option>';
+
+    const cats = JSON.parse(localStorage.getItem('misCategoriasData')) || [];
+    selectCategoria.innerHTML = '<option value="">Selecciona Categoría...</option>';
     cats.forEach(c => {
         const o = document.createElement('option');
         o.value = c.nombre;
@@ -18,6 +19,17 @@ document.addEventListener('DOMContentLoaded', () => {
         selectCategoria.appendChild(o);
     });
 
+   
+    const ciudadesGuardadas = JSON.parse(localStorage.getItem('misCiudadesData')) || [];
+    if (selectCiudad) {
+        selectCiudad.innerHTML = '<option value="">Selecciona Ciudad...</option>';
+        ciudadesGuardadas.forEach(ciudad => {
+            const o = document.createElement('option');
+            o.value = ciudad; 
+            o.textContent = ciudad;
+            selectCiudad.appendChild(o);
+        });
+    }
 
     if (editId !== null && conciertos[editId]) {
         console.log("Cargando datos para editar...", conciertos[editId]);
@@ -33,24 +45,22 @@ document.addEventListener('DOMContentLoaded', () => {
             document.getElementById('evento-aforo').value = datos.aforo || 0;
         }
 
-        if(selectCiudad) {
-            selectCiudad.value = datos.ciudad || "";
-        }
-
+       
         setTimeout(() => {
-            selectCategoria.value = datos.categoria;
+            if(selectCiudad) selectCiudad.value = datos.ciudad || "";
+            if(selectCategoria) selectCategoria.value = datos.categoria || "";
         }, 50);
 
         if(btnGuardar) {
-            btnGuardar.textContent = "🚀 ACTUALIZAR DATOS";
+            btnGuardar.textContent = " ACTUALIZAR DATOS";
             btnGuardar.style.background = "#4CAF50"; 
         }
     }
 
+
     formulario.addEventListener('submit', (e) => {
         e.preventDefault();
 
-        // Crear el objeto con la lógica de AFORO y VENDIDOS
         const nuevoObjeto = {
             nombre: document.getElementById('evento-nombre').value,
             categoria: selectCategoria.value,
@@ -60,7 +70,6 @@ document.addEventListener('DOMContentLoaded', () => {
             imagen: document.getElementById('evento-imagen').value,
             descripcion: document.getElementById('evento-descripcion').value,
             horarios: [],
-            // Guardar capacidad y mantener los vendidos si es edición
             aforo: parseInt(document.getElementById('evento-aforo').value) || 0,
             vendidos: (editId !== null) ? (conciertos[editId].vendidos || 0) : 0 
         };
